@@ -1,0 +1,328 @@
+executing the program 16 iterations 
+sort task duration_id pair spent 16829 us
+time spent in task_insert_simulation is 31656
+iteration 1 took 91.74393399999999587635 ms
+iteration 2 took 55.37971399999999988495 ms
+iteration 3 took 56.46890299999999740521 ms
+iteration 4 took 57.97607899999999858665 ms
+iteration 5 took 52.16992299999999715965 ms
+iteration 6 took 56.59984599999999943520 ms
+iteration 7 took 56.25651400000003832247 ms
+iteration 8 took 53.73209099999999693864 ms
+iteration 9 took 60.66686599999999884858 ms
+iteration 10 took 49.95653200000000282444 ms
+iteration 11 took 60.16359700000000287901 ms
+iteration 12 took 54.59341500000000024784 ms
+iteration 13 took 53.13145000000000095497 ms
+iteration 14 took 51.95240499999999883585 ms
+iteration 15 took 49.13085199999999730380 ms
+iteration 16 took 51.18971200000000010277 ms
+911.112 ms passed
+-------- LIBOMP Timers -------
+overall push_task took:                              27568.000000
+execute_tdg (without end_taskgroup):                695713.000000
+ ->first loop (set parent task data) :              168649.000000
+   ->wait_all_threads_scheduled took:                   21.000000
+ ->second loop:                                     527056.000000
+   -> omp_task_called:                                     262144
+
+
+-------- LIBOMP TDGS ---------
+TDG [   0] has 16384 root tasks was executed   15 times
+-------- RECORD TDGS ---------
+TDG num,  initialization, execute_task_func, set root task, distribute_tasks, erase_trans_edges, taskwait and reinit
+TDG [  0],      221.000000,    48064.000000,     1880.000000,    36327.000000,     2740.000000,     2483.000000 us
+-------- INVOKE_TASK_TIME --------
+threads 0 spent        680815.000000 us invoking tasks
+threads 1 spent        680898.000000 us invoking tasks
+threads 2 spent        679936.000000 us invoking tasks
+threads 3 spent        680944.000000 us invoking tasks
+threads 4 spent        680788.000000 us invoking tasks
+threads 5 spent        680878.000000 us invoking tasks
+threads 6 spent        680716.000000 us invoking tasks
+threads 7 spent        680658.000000 us invoking tasks
+threads 8 spent        681242.000000 us invoking tasks
+threads 9 spent        680838.000000 us invoking tasks
+threads 10 spent        681358.000000 us invoking tasks
+threads 11 spent        680595.000000 us invoking tasks
+threads 12 spent        681251.000000 us invoking tasks
+threads 13 spent        680682.000000 us invoking tasks
+threads 14 spent        680875.000000 us invoking tasks
+threads 15 spent        681102.000000 us invoking tasks
+threads 16 spent        680704.000000 us invoking tasks
+threads 17 spent        680930.000000 us invoking tasks
+threads 18 spent        681184.000000 us invoking tasks
+threads 19 spent        680757.000000 us invoking tasks
+threads 20 spent        680762.000000 us invoking tasks
+threads 21 spent        681436.000000 us invoking tasks
+threads 22 spent        680613.000000 us invoking tasks
+threads 23 spent        662394.000000 us invoking tasks
+threads 24 spent        679828.000000 us invoking tasks
+threads 25 spent        680652.000000 us invoking tasks
+threads 26 spent        680293.000000 us invoking tasks
+threads 27 spent        679595.000000 us invoking tasks
+threads 28 spent        680089.000000 us invoking tasks
+threads 29 spent        680460.000000 us invoking tasks
+threads 30 spent        681063.000000 us invoking tasks
+threads 31 spent        680174.000000 us invoking tasks
+threads 32 spent        681430.000000 us invoking tasks
+threads 33 spent        680454.000000 us invoking tasks
+threads 34 spent        680941.000000 us invoking tasks
+threads 35 spent        680875.000000 us invoking tasks
+threads 36 spent        680539.000000 us invoking tasks
+threads 37 spent        680755.000000 us invoking tasks
+threads 38 spent        680509.000000 us invoking tasks
+threads 39 spent        680778.000000 us invoking tasks
+threads 40 spent        680864.000000 us invoking tasks
+threads 41 spent        680631.000000 us invoking tasks
+threads 42 spent        680310.000000 us invoking tasks
+threads 43 spent        680288.000000 us invoking tasks
+threads 44 spent        681362.000000 us invoking tasks
+threads 45 spent        682658.000000 us invoking tasks
+threads 46 spent        680626.000000 us invoking tasks
+threads 47 spent        680994.000000 us invoking tasks
+-------- INVOKE_TASK_OCCURENCES --------
+threads 0 executed     5461 tasks
+threads 1 executed     5466 tasks
+threads 2 executed     5459 tasks
+threads 3 executed     5463 tasks
+threads 4 executed     5465 tasks
+threads 5 executed     5467 tasks
+threads 6 executed     5465 tasks
+threads 7 executed     5465 tasks
+threads 8 executed     5467 tasks
+threads 9 executed     5454 tasks
+threads 10 executed     5469 tasks
+threads 11 executed     5465 tasks
+threads 12 executed     5469 tasks
+threads 13 executed     5465 tasks
+threads 14 executed     5467 tasks
+threads 15 executed     5469 tasks
+threads 16 executed     5466 tasks
+threads 17 executed     5468 tasks
+threads 18 executed     5466 tasks
+threads 19 executed     5466 tasks
+threads 20 executed     5466 tasks
+threads 21 executed     5468 tasks
+threads 22 executed     5464 tasks
+threads 23 executed     5340 tasks
+threads 24 executed     5457 tasks
+threads 25 executed     5461 tasks
+threads 26 executed     5462 tasks
+threads 27 executed     5456 tasks
+threads 28 executed     5459 tasks
+threads 29 executed     5463 tasks
+threads 30 executed     5466 tasks
+threads 31 executed     5460 tasks
+threads 32 executed     5469 tasks
+threads 33 executed     5463 tasks
+threads 34 executed     5462 tasks
+threads 35 executed     5462 tasks
+threads 36 executed     5461 tasks
+threads 37 executed     5464 tasks
+threads 38 executed     5464 tasks
+threads 39 executed     5465 tasks
+threads 40 executed     5465 tasks
+threads 41 executed     5461 tasks
+threads 42 executed     5461 tasks
+threads 43 executed     5461 tasks
+threads 44 executed     5465 tasks
+threads 45 executed     5469 tasks
+threads 46 executed     5461 tasks
+threads 47 executed     5467 tasks
+-------- WAIT_TEMPLATE TIME --------
+threads 0 spent        829601.000000 us in wait_template (121313 iterations)
+ ->schedule_task took        504420.000000 us
+threads 1 spent        843030.000000 us in wait_template (120591 iterations)
+ ->schedule_task took        518334.000000 us
+threads 2 spent        821041.000000 us in wait_template (143034 iterations)
+ ->schedule_task took        449016.000000 us
+threads 3 spent        821325.000000 us in wait_template (146698 iterations)
+ ->schedule_task took        500737.000000 us
+threads 4 spent        849287.000000 us in wait_template (124600 iterations)
+ ->schedule_task took        500008.000000 us
+threads 5 spent        846830.000000 us in wait_template (123671 iterations)
+ ->schedule_task took        515304.000000 us
+threads 6 spent        841884.000000 us in wait_template (146415 iterations)
+ ->schedule_task took        482220.000000 us
+threads 7 spent        842229.000000 us in wait_template (147202 iterations)
+ ->schedule_task took        464453.000000 us
+threads 8 spent        838348.000000 us in wait_template (123728 iterations)
+ ->schedule_task took        529301.000000 us
+threads 9 spent        840464.000000 us in wait_template (103808 iterations)
+ ->schedule_task took        501566.000000 us
+threads 10 spent        844585.000000 us in wait_template (128249 iterations)
+ ->schedule_task took        530276.000000 us
+threads 11 spent        843812.000000 us in wait_template (128392 iterations)
+ ->schedule_task took        532818.000000 us
+threads 12 spent        842630.000000 us in wait_template (101156 iterations)
+ ->schedule_task took        533205.000000 us
+threads 13 spent        842048.000000 us in wait_template (90040 iterations)
+ ->schedule_task took        518096.000000 us
+threads 14 spent        845234.000000 us in wait_template (127057 iterations)
+ ->schedule_task took        519760.000000 us
+threads 15 spent        846722.000000 us in wait_template (121109 iterations)
+ ->schedule_task took        509647.000000 us
+threads 16 spent        843101.000000 us in wait_template (89654 iterations)
+ ->schedule_task took        532434.000000 us
+threads 17 spent        846160.000000 us in wait_template (103043 iterations)
+ ->schedule_task took        535944.000000 us
+threads 18 spent        849416.000000 us in wait_template (117206 iterations)
+ ->schedule_task took        519164.000000 us
+threads 19 spent        851011.000000 us in wait_template (117086 iterations)
+ ->schedule_task took        518837.000000 us
+threads 20 spent        880129.000000 us in wait_template (73878 iterations)
+ ->schedule_task took        532924.000000 us
+threads 21 spent        880462.000000 us in wait_template (67177 iterations)
+ ->schedule_task took        512144.000000 us
+threads 22 spent        879820.000000 us in wait_template (74906 iterations)
+ ->schedule_task took        531893.000000 us
+threads 23 spent            58.000000 us in wait_template (19 iterations)
+ ->schedule_task took             5.000000 us
+threads 24 spent        866647.000000 us in wait_template (90791 iterations)
+ ->schedule_task took        531429.000000 us
+threads 25 spent        865243.000000 us in wait_template (93207 iterations)
+ ->schedule_task took        514451.000000 us
+threads 26 spent        865215.000000 us in wait_template (93618 iterations)
+ ->schedule_task took        533195.000000 us
+threads 27 spent        864467.000000 us in wait_template (94911 iterations)
+ ->schedule_task took        526801.000000 us
+threads 28 spent        867963.000000 us in wait_template (85994 iterations)
+ ->schedule_task took        521488.000000 us
+threads 29 spent        868895.000000 us in wait_template (83268 iterations)
+ ->schedule_task took        524484.000000 us
+threads 30 spent        868980.000000 us in wait_template (87029 iterations)
+ ->schedule_task took        518846.000000 us
+threads 31 spent        868254.000000 us in wait_template (87016 iterations)
+ ->schedule_task took        515240.000000 us
+threads 32 spent        878190.000000 us in wait_template (88114 iterations)
+ ->schedule_task took        509480.000000 us
+threads 33 spent        878076.000000 us in wait_template (93182 iterations)
+ ->schedule_task took        533043.000000 us
+threads 34 spent        878864.000000 us in wait_template (92042 iterations)
+ ->schedule_task took        504089.000000 us
+threads 35 spent        878430.000000 us in wait_template (91657 iterations)
+ ->schedule_task took        519034.000000 us
+threads 36 spent        891446.000000 us in wait_template (54752 iterations)
+ ->schedule_task took        503458.000000 us
+threads 37 spent        889842.000000 us in wait_template (53349 iterations)
+ ->schedule_task took        523014.000000 us
+threads 38 spent        892490.000000 us in wait_template (55158 iterations)
+ ->schedule_task took        531072.000000 us
+threads 39 spent        892357.000000 us in wait_template (55263 iterations)
+ ->schedule_task took        496941.000000 us
+threads 40 spent        893783.000000 us in wait_template (53861 iterations)
+ ->schedule_task took        517048.000000 us
+threads 41 spent        894899.000000 us in wait_template (56031 iterations)
+ ->schedule_task took        511399.000000 us
+threads 42 spent        895079.000000 us in wait_template (57190 iterations)
+ ->schedule_task took        488636.000000 us
+threads 43 spent        895433.000000 us in wait_template (56675 iterations)
+ ->schedule_task took        523324.000000 us
+threads 44 spent        894093.000000 us in wait_template (63715 iterations)
+ ->schedule_task took        504779.000000 us
+threads 45 spent        894030.000000 us in wait_template (63489 iterations)
+ ->schedule_task took        447421.000000 us
+threads 46 spent        894004.000000 us in wait_template (64256 iterations)
+ ->schedule_task took        530486.000000 us
+threads 47 spent        893956.000000 us in wait_template (64209 iterations)
+ ->schedule_task took        512543.000000 us
+-------- EXECUTE_TASKS_TEMPLATE TIME PER THREAD --------
+thread num,  remove_my_task,  steal_task,  invoke_task,  ending_inner_loop,  4th part,  last_part
+thread   0,  4346.000000,  8259.000000,  686115.000000, 194.000000, 3577.000000, 0.000000 us
+thread   1,  4348.000000,  7833.000000,  686192.000000, 177.000000, 3878.000000, 0.000000 us
+thread   2,  5101.000000,  9678.000000,  685187.000000, 250.000000, 4558.000000, 0.000000 us
+thread   3,  5289.000000,  9499.000000,  686222.000000, 192.000000, 4755.000000, 0.000000 us
+thread   4,  4503.000000,  8166.000000,  686068.000000, 197.000000, 4051.000000, 0.000000 us
+thread   5,  4345.000000,  7908.000000,  686126.000000, 189.000000, 3978.000000, 0.000000 us
+thread   6,  5209.000000,  9498.000000,  685946.000000, 209.000000, 4853.000000, 0.000000 us
+thread   7,  5214.000000,  9500.000000,  685862.000000, 236.000000, 4868.000000, 0.000000 us
+thread   8,  4414.000000,  7781.000000,  686522.000000, 157.000000, 3951.000000, 0.000000 us
+thread   9,  3756.000000,  6893.000000,  686005.000000, 213.000000, 3222.000000, 0.000000 us
+thread  10,  4698.000000,  8653.000000,  686551.000000, 167.000000, 4168.000000, 0.000000 us
+thread  11,  4710.000000,  8540.000000,  685797.000000, 157.000000, 4283.000000, 0.000000 us
+thread  12,  3691.000000,  6764.000000,  686480.000000, 151.000000, 3288.000000, 0.000000 us
+thread  13,  3294.000000,  6178.000000,  685950.000000, 182.000000, 2946.000000, 0.000000 us
+thread  14,  5766.000000,  8053.000000,  686084.000000, 176.000000, 4187.000000, 0.000000 us
+thread  15,  4333.000000,  7772.000000,  686330.000000, 189.000000, 4003.000000, 0.000000 us
+thread  16,  3320.000000,  6120.000000,  685989.000000, 178.000000, 2553.000000, 0.000000 us
+thread  17,  3779.000000,  6799.000000,  686233.000000, 170.000000, 3417.000000, 0.000000 us
+thread  18,  4321.000000,  7557.000000,  686449.000000, 195.000000, 3735.000000, 0.000000 us
+thread  19,  4334.000000,  7650.000000,  686048.000000, 200.000000, 3843.000000, 0.000000 us
+thread  20,  2717.000000,  5062.000000,  685979.000000, 192.000000, 2137.000000, 0.000000 us
+thread  21,  2534.000000,  4592.000000,  686686.000000, 175.000000, 2222.000000, 0.000000 us
+thread  22,  2703.000000,  4987.000000,  685889.000000, 200.000000, 2420.000000, 0.000000 us
+thread  23,  329.000000,  409.000000,  663480.000000, 147.000000, 77.000000, 0.000000 us
+thread  24,  3349.000000,  6031.000000,  685036.000000, 204.000000, 2898.000000, 0.000000 us
+thread  25,  3422.000000,  6478.000000,  685945.000000, 184.000000, 3042.000000, 0.000000 us
+thread  26,  3417.000000,  6300.000000,  685427.000000, 153.000000, 3075.000000, 0.000000 us
+thread  27,  3504.000000,  6093.000000,  684895.000000, 167.000000, 3034.000000, 0.000000 us
+thread  28,  3731.000000,  5812.000000,  685305.000000, 189.000000, 2928.000000, 0.000000 us
+thread  29,  3097.000000,  5710.000000,  685786.000000, 184.000000, 2777.000000, 0.000000 us
+thread  30,  3340.000000,  5736.000000,  686399.000000, 186.000000, 2906.000000, 0.000000 us
+thread  31,  3333.000000,  5873.000000,  685418.000000, 179.000000, 2901.000000, 0.000000 us
+thread  32,  3348.000000,  5951.000000,  686702.000000, 192.000000, 2927.000000, 0.000000 us
+thread  33,  3434.000000,  6047.000000,  685723.000000, 164.000000, 3062.000000, 0.000000 us
+thread  34,  3457.000000,  6225.000000,  686284.000000, 210.000000, 3045.000000, 0.000000 us
+thread  35,  3450.000000,  5900.000000,  686267.000000, 166.000000, 2960.000000, 0.000000 us
+thread  36,  2140.000000,  3882.000000,  685840.000000, 196.000000, 1685.000000, 0.000000 us
+thread  37,  2301.000000,  3842.000000,  686002.000000, 156.000000, 1811.000000, 0.000000 us
+thread  38,  2151.000000,  3875.000000,  685804.000000, 144.000000, 1806.000000, 0.000000 us
+thread  39,  2109.000000,  4422.000000,  686079.000000, 208.000000, 1810.000000, 0.000000 us
+thread  40,  2056.000000,  3887.000000,  686181.000000, 185.000000, 1764.000000, 0.000000 us
+thread  41,  2143.000000,  4092.000000,  685940.000000, 206.000000, 1805.000000, 0.000000 us
+thread  42,  2500.000000,  4218.000000,  685637.000000, 220.000000, 1885.000000, 0.000000 us
+thread  43,  2524.000000,  4031.000000,  685491.000000, 169.000000, 1845.000000, 0.000000 us
+thread  44,  2956.000000,  4611.000000,  686655.000000, 194.000000, 2109.000000, 0.000000 us
+thread  45,  2877.000000,  5004.000000,  687999.000000, 246.000000, 2098.000000, 0.000000 us
+thread  46,  2623.000000,  4566.000000,  685802.000000, 146.000000, 2090.000000, 0.000000 us
+thread  47,  2417.000000,  4495.000000,  686234.000000, 225.000000, 2206.000000, 0.000000 us
+-------- OMP_TASK TIME PER THREAD --------
+threads 0 spent        493569.000000 us in kmp_omp_task
+threads 1 spent        509012.000000 us in kmp_omp_task
+threads 2 spent        438675.000000 us in kmp_omp_task
+threads 3 spent        490216.000000 us in kmp_omp_task
+threads 4 spent        490707.000000 us in kmp_omp_task
+threads 5 spent        505753.000000 us in kmp_omp_task
+threads 6 spent        472018.000000 us in kmp_omp_task
+threads 7 spent        454164.000000 us in kmp_omp_task
+threads 8 spent        518955.000000 us in kmp_omp_task
+threads 9 spent        492280.000000 us in kmp_omp_task
+threads 10 spent        520437.000000 us in kmp_omp_task
+threads 11 spent        522427.000000 us in kmp_omp_task
+threads 12 spent        523954.000000 us in kmp_omp_task
+threads 13 spent        509514.000000 us in kmp_omp_task
+threads 14 spent        509289.000000 us in kmp_omp_task
+threads 15 spent        499365.000000 us in kmp_omp_task
+threads 16 spent        523834.000000 us in kmp_omp_task
+threads 17 spent        526866.000000 us in kmp_omp_task
+threads 18 spent        509681.000000 us in kmp_omp_task
+threads 19 spent        509384.000000 us in kmp_omp_task
+threads 20 spent        525561.000000 us in kmp_omp_task
+threads 21 spent        504859.000000 us in kmp_omp_task
+threads 22 spent        524309.000000 us in kmp_omp_task
+threads 23 spent        562668.000000 us in kmp_omp_task
+threads 24 spent        523176.000000 us in kmp_omp_task
+threads 25 spent        506134.000000 us in kmp_omp_task
+threads 26 spent        525152.000000 us in kmp_omp_task
+threads 27 spent        518704.000000 us in kmp_omp_task
+threads 28 spent        513826.000000 us in kmp_omp_task
+threads 29 spent        517294.000000 us in kmp_omp_task
+threads 30 spent        511685.000000 us in kmp_omp_task
+threads 31 spent        508129.000000 us in kmp_omp_task
+threads 32 spent        502255.000000 us in kmp_omp_task
+threads 33 spent        525374.000000 us in kmp_omp_task
+threads 34 spent        496891.000000 us in kmp_omp_task
+threads 35 spent        511501.000000 us in kmp_omp_task
+threads 36 spent        497931.000000 us in kmp_omp_task
+threads 37 spent        517528.000000 us in kmp_omp_task
+threads 38 spent        525374.000000 us in kmp_omp_task
+threads 39 spent        491399.000000 us in kmp_omp_task
+threads 40 spent        511294.000000 us in kmp_omp_task
+threads 41 spent        505741.000000 us in kmp_omp_task
+threads 42 spent        482814.000000 us in kmp_omp_task
+threads 43 spent        517434.000000 us in kmp_omp_task
+threads 44 spent        499089.000000 us in kmp_omp_task
+threads 45 spent        442427.000000 us in kmp_omp_task
+threads 46 spent        524427.000000 us in kmp_omp_task
+threads 47 spent        506523.000000 us in kmp_omp_task
