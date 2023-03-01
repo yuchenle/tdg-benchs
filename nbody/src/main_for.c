@@ -1,7 +1,7 @@
 /* nbody.c */
-#include <omp.h>
 #include "nbody.h"
 #include "timer.h"
+#include <omp.h>
 
 extern void calculate_force_func(float, int, Particle *, Particle *, int);
 
@@ -18,8 +18,7 @@ double wall_time() {
 
 int main(int argc, char **argv) {
   if (argc != 4) {
-    fprintf(stderr,
-            "usage: %s <input file> <particle number> <num iters>\n",
+    fprintf(stderr, "usage: %s <input file> <particle number> <num iters>\n",
             argv[0]);
     exit(-1);
   }
@@ -57,41 +56,41 @@ int main(int argc, char **argv) {
   int nthreads = 0;
 
 #pragma omp parallel shared(nthreads) private(timestep)
-{
+  {
     nthreads = omp_get_num_threads();
     int tid = omp_get_thread_num();
     clock_gettime(CLOCK_MONOTONIC, &rsss[tid]);
-    
+
     for (timestep = 1; timestep <= number_of_timesteps; timestep++) {
-      #pragma omp for schedule(dynamic)
+#pragma omp for schedule(dynamic)
       for (int i = 0; i < number_of_particles; i++) {
-        calculate_force_func(time_interval, number_of_particles,
-                              particle_array, &particle_array2[i], i);
+        calculate_force_func(time_interval, number_of_particles, particle_array,
+                             &particle_array2[i], i);
       }
     } // number iteration
-    
-    clock_gettime(CLOCK_MONOTONIC, &rsee[tid]);
-    makespan[tid] += (rsee[tid].tv_sec - rsss[tid].tv_sec)*1000 + (rsee[tid].tv_nsec - rsss[tid].tv_nsec) / 1000000.;
 
-    #pragma omp single
+    clock_gettime(CLOCK_MONOTONIC, &rsee[tid]);
+    makespan[tid] += (rsee[tid].tv_sec - rsss[tid].tv_sec) * 1000 +
+                     (rsee[tid].tv_nsec - rsss[tid].tv_nsec) / 1000000.;
+
+#pragma omp single
     {
       Particle *tmp = particle_array;
       particle_array = particle_array2;
       particle_array2 = tmp;
     } // single
-}
-  // printf("Particles per second: %g \n",
-  // (number_of_particles*number_of_timesteps)/(end-start));
+  }
   double maximum = 0;
   double avg = 0;
   for (int i = 0; i < 50; ++i) {
     if (maximum < makespan[i])
       maximum = makespan[i];
-    avg+= makespan[i];
+    avg += makespan[i];
   }
 
-  printf("Threads recorded %g ms as the maximum, average = %g ms, nthreads = %d\n", maximum, avg/nthreads,
-         nthreads);
+  printf(
+      "Threads recorded %g ms as the maximum, average = %g ms, nthreads = %d\n",
+      maximum, avg / nthreads, nthreads);
 
   Particle_array_output_xyz(fileptr, particle_array, number_of_particles);
 

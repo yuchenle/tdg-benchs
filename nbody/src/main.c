@@ -77,14 +77,12 @@ int main(int argc, char **argv) {
       END_TIMER;
 
       makespan += TIMER;
-      //printf("iteration %d took %.20f ms\n", timestep, TIMER);
+      // printf("iteration %d took %.20f ms\n", timestep, TIMER);
       Particle *tmp = particle_array;
       particle_array = particle_array2;
       particle_array2 = tmp;
 
     } // for
-    // printf("Particles per second: %g \n",
-    // (number_of_particles*number_of_timesteps)/(end-start));
     printf("%g ms passed\n", makespan);
   } // single,parallel
 
