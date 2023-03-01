@@ -5,7 +5,7 @@ CFLAGS = -O3 -g
 BIN = cholesky
 TDG = -DTDG -fopenmp-taskgraph
 TDG_LIB = $(OMP_PATH)
-MKL_LIB = $(MKL_ROOT)/lib/intel64
+MKL_LIB = $(MKL_ROOT)/lib/intel64 -Wl,-rpath,$(MKL_ROOT)/lib/intel64
 MKL_INC = $(MKL_ROOT)/include
 #/apps/INTEL/oneapi/2021.3/mkl/2021.3.0/lib/intel64
 all: $(BIN)_vanilla $(BIN)_serial $(BIN)_record $(BIN)_for

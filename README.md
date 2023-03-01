@@ -1,7 +1,7 @@
 # tdg-benchs
 Set of benchmarks used to test the performance of taskgraph. Growing
 
-## How to Build
+## How to Build & Run
 
 ### For benchmarks that do not belong to NAS
 Firstly, set up the following environment variables (EV):
@@ -10,6 +10,9 @@ Firstly, set up the following environment variables (EV):
 3. *OPENCV_ROOT*: for hog. Hog application needs OpenCV library to work, which is already comprised in its own folder. Hence, you can either set this EV to *tdg-benchs/hog/lib* or to your own opencv library folder.
 
 Secondly, run `make` in the root folder of the current repository
+
+Most applications have their corresponding runtime libraries set at compile time with rpath.
+If not, please set the correct the library path by setting *LD_LIBRARY_PATH*.
 
 ### For NAS Benchmarks:
 Access to the nas-omp folder and follow the instructions prompted by `make`. We 

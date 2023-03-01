@@ -11,11 +11,11 @@
 #include "timer.h"
 
 #include <assert.h>
+#include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h> // to measure time without parallel
-
 int Num_B;
 
 double **u;
@@ -108,6 +108,21 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
+#ifdef VERBOSE
+  // check result file
+  unsigned size = 128;
+  char resfilename[size];
+  resfilename[0] = '\0';
+  strcat(resfilename, argv[0]);
+  strcat(resfilename, ".ppm");
+
+  if (!(resfile = fopen(resfilename, "w"))) {
+    fprintf(stderr, "\nError: Cannot open \"%s\" for writing.\n\n",
+            resfilename);
+    usage(argv[0]);
+    return 1;
+  }
+#endif
   // print_params(&param);
 
   assert((param.algorithm == 1) &&
@@ -137,6 +152,7 @@ int main(int argc, char *argv[]) {
   struct timespec rsss[50];
   struct timespec rsee[50];
   double makespan[50] = {0};
+  int tid;
 
   for (int i = 0; i < num_iter; i++) {
     double sum = 0.0;
@@ -149,73 +165,96 @@ int main(int argc, char *argv[]) {
     bx = sizex / nbx;
     by = sizey / nby;
 
-    for (iter = 0; iter < param.maxiter; ++iter) {
-// number of diagonals
-#pragma omp parallel shared(nthreads)
-      for (int ii = 0; ii < 2 * nbx - 1; ++ii) {
-        // number of blocks per diagonal
-        int nbd;
-        if (ii < nbx)
-          nbd = ii + 1;
-        else
-          nbd = nbx - ((ii + 1) - nbx);
+#pragma omp parallel shared(nthreads) private(iter, tid)
+    {
+      tid = omp_get_thread_num();
+      nthreads = omp_get_num_threads();
+      clock_gettime(CLOCK_MONOTONIC, &rsss[tid]);
+      for (iter = 0; iter < param.maxiter; ++iter) {
+        // number of diagonals
+        for (int diag = 0; diag < nbx; diag++) {
+#pragma omp for schedule(dynamic, 1)
+          for (int I = 0; I <= diag; I++) {
+            int ii = I;
+            int jj = diag - I;
 
-        int tid = omp_get_thread_num();
-        nthreads = omp_get_num_threads();
-        clock_gettime(CLOCK_MONOTONIC, &rsss[tid]);
-#pragma omp for schedule(static,1)
-        for (int jj = 0; jj < nbd; ++jj) {
-          int inf_i;
-          if (ii < nbx)
-            inf_i = jj * bx;
-          else
-            inf_i = jj * bx + (ii + 1 - nbx) * bx;
-          int sup_i = (inf_i + bx) < sizex ? inf_i + bx : sizex;
-          int tmp_j = (ii * by) < sizey ? ii * by : sizey;
-          int inf_j;
-          if (nbd <= nbx)
-            inf_j = tmp_j - jj * by;
-          else
-            inf_j = tmp_j - (jj + 1) * by;
-          int sup_j = (inf_j + by) < sizey ? inf_j + by : sizey;
-          // printf("simultaneously executing diagonal %d from thread %d,\
-          //   inf_i %d, sup_i %d, inf_j %d, sup_j %d\n", ii,
-          // omp_get_thread_num(), inf_i, sup_i, inf_j, sup_j);
-          double(*u2)[sizey] = (double(*)[sizey])u;
-          for (int i = inf_i; i < sup_i; i++) {
-            for (int j = inf_j; j < sup_j; ++j) {
-              double unew;
-              unew = 0.25 * (u2[i][j - 1] + u2[i][j + 1] + u2[i - 1][j] +
-                             u2[i + 1][j]);
-              u2[i][j] = unew;
+            int inf_i = 1 + ii * bx;
+            int sup_i = ((inf_i + bx) < sizex - 1) ? inf_i + bx : sizex - 1;
+            int inf_j = 1 + jj * by;
+            int sup_j = ((inf_j + by) < sizey - 1) ? inf_j + by : sizey - 1;
+
+            // printf("inf_i = %d, sup_i %d inf_j %d, sup_j %d\n", inf_i, sup_i,
+            // inf_j, sup_j);
+            for (int i = inf_i; i < sup_i; i++) {
+              for (int j = inf_j; j < sup_j; j++) {
+                // printf("i %d\n", i);
+                // printf("j %d\n", j);
+                // printf("param.u %p\n", (void *)param.u);
+                // printf("param.u[%d][%d] = %f\n", i, j, param.u[i*sizex+j]);
+                double unew;
+                unew = 0.25 * (param.u[i * sizex + j - 1] +
+                               param.u[i * sizex + j + 1] +
+                               param.u[(i - 1) * sizex + j] +
+                               param.u[(i + 1) * sizex + j]);
+                param.u[i * sizex + j] = unew;
+              }
             }
           }
         }
-        clock_gettime(CLOCK_MONOTONIC, &rsee[tid]);
-        makespan[tid] += (rsee[tid].tv_sec - rsss[tid].tv_sec) * 1000 +
-                         (rsee[tid].tv_nsec - rsss[tid].tv_nsec) / 1000000.;
+
+        for (int diag = nbx - 1; diag >= 0; diag--) {
+#pragma omp for schedule(dynamic, 1)
+          for (int I = nbx - 1; I >= nbx - diag; I--) {
+            int ii = nby - I;
+            int jj = nby - ii;
+            ii += nbx - 1 - diag;
+
+            int inf_i = 1 + ii * bx;
+            int sup_i = ((inf_i + bx) < sizex - 1) ? inf_i + bx : sizex - 1;
+            int inf_j = 1 + jj * by;
+            int sup_j = ((inf_j + by) < sizey - 1) ? inf_j + by : sizey - 1;
+
+            // printf("inf_i = %d, sup_i %d inf_j %d, sup_j %d\n", inf_i, sup_i,
+            // inf_j, sup_j);
+            for (int i = inf_i; i < sup_i; i++) {
+              for (int j = inf_j; j < sup_j; j++) {
+                double unew;
+                unew = 0.25 * (param.u[i * sizex + j - 1] +
+                               param.u[i * sizex + j + 1] +
+                               param.u[(i - 1) * sizex + j] +
+                               param.u[(i + 1) * sizex + j]);
+                param.u[i * sizex + j] = unew;
+              }
+            }
+          }
+        }
       }
-      // reset the heatmap
+      clock_gettime(CLOCK_MONOTONIC, &rsee[tid]);
+      makespan[tid] += (rsee[tid].tv_sec - rsss[tid].tv_sec) * 1000 +
+                       (rsee[tid].tv_nsec - rsss[tid].tv_nsec) / 1000000.;
+    }
+#ifdef VERBOSE
+    if (i == 1)
+#endif
       memcpy(param.u, u_tmp, sizeof(double) * np * np);
-    } // num_iter loop
+  } // num_iter loop
 
-    printf("without parallel, we spent %.4f ms\n", makespan);
-  } // parallel single
-  double sum = 0;
-  for (int i = 0; i < 50; ++i)
-    sum += makespan[i];
+  double maximum = 0;
+  double avg = 0;
+  for (int i = 0; i < 50; ++i) {
+    if (maximum < makespan[i])
+      maximum = makespan[i];
+    avg += makespan[i];
+  }
 
-  printf("On average, threads recorded %g ms, nthreads = %d\n", sum / nthreads,
-         nthreads);
+  printf(
+      "Threads recorded %g ms as the maximum, average = %g ms, nthreads = %d\n",
+      maximum, avg / nthreads, nthreads);
 
-  // stopping time
-
-  // fprintf(stdout, "test, %s, output_file, %s, time, %f, threads, %d, NB,
-  // %d\n", argv[0], resfilename, runtime, omp_get_max_threads(), NB);
-  // fprintf(stdout,"time %f\n", runtime);
-  // printf ("without parallel, we spent %.4f us\n", totalTime);
-  // printf ("overall runtime = %.4f us\n", runtime);
-
+#ifdef VERBOSE
+  coarsen(param.u, np, np, param.uvis, param.visres + 2, param.visres + 2);
+  write_image(resfile, param.uvis, param.visres + 2, param.visres + 2);
+#endif
   finalize(&param);
   return 0;
 }

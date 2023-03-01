@@ -2,7 +2,7 @@ CC 		= clang
 OMP 		= -fopenmp
 TDG		= -DTDG -fopenmp-taskgraph
 TDG_LIB		= $(OMP_PATH)
-CFLAGS = -O3 -g
+CFLAGS = -O3 -g -DVERBOSE
 LFLAGS = -lm
 
 BIN= heat_serial heat_vanilla heat_record heat_for

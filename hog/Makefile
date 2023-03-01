@@ -6,7 +6,7 @@ OPENCV_LIBS		= -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_ml -lope
 BIN			= personDetector
 HOG			= hog
 TDG			= -DTDG -fopenmp-taskgraph
-OPENCV_L		= -L$(OPENCV_ROOT)/lib
+OPENCV_L		= -L$(OPENCV_ROOT)/lib -Wl,-rpath,$(OPENCV_ROOT)/lib
 OPENCV_I		= -I$(OPENCV_ROOT)/include
 TDG_LIB			= $(OMP_PATH)
 
