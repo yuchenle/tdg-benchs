@@ -58,13 +58,14 @@ int main(int argc, char *argv[]) {
   N_CHUNKS = (N_CHUNKS * CHUNK_SIZE < N) ? N_CHUNKS + 1 : N_CHUNKS;
 
   START_TIMER;
-  for (int i = 0; i < numIter; ++i) {
-    res = 0.0;
-    initialize(N, CHUNK_SIZE, A, B);
-#pragma omp taskwait
-
 #pragma omp parallel shared(nthreads)
     {
+  for (int i = 0; i < numIter; ++i) {
+    res = 0.0;
+    #pragma omp single
+    initialize(N, CHUNK_SIZE, A, B);
+    #pragma omp taskwait
+
       nthreads = omp_get_num_threads();
       double tmp = 0;
       int tid = omp_get_thread_num();

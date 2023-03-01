@@ -52,9 +52,9 @@ void cholesky_blocked(const int ts, double *Ah[NB][NB], int num_iter) {
   double(*AhDep)[NB][NB] = (double(*)[NB][NB])Ah;
   // AhDep is passed as argument of omp_potrf/trsm/gemm/syrk for TDG recording
   // mechanism
-  for (int iter = 0; iter < num_iter; iter++) {
 #pragma omp parallel shared(Ah, AhDep, ts, nthreads)
-    {
+  {
+  for (int iter = 0; iter < num_iter; iter++) {
       int tid = omp_get_thread_num();
       nthreads = omp_get_num_threads();
       clock_gettime(CLOCK_MONOTONIC, &rsss[tid]);
