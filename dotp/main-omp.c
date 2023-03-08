@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
     long actual_size;
 
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #pragma omp single nowait
 #endif
     for (long i = 0; i < N; i += CHUNK_SIZE) {

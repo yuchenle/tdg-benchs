@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
       START_TIMER;
 
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
       {
 #endif
         for (int i = 0; i < number_of_particles; i++) {

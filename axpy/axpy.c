@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
     for (int i = 0; i < num_iter; i++) {
       START_TIMER;
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
       {
         for (int i = 0; i < N; i += BS) {

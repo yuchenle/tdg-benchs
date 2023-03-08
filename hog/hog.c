@@ -1813,7 +1813,7 @@ vl_float *vl_bsc_hog(vl_float const *image, vl_size width, vl_size height,
     for (int i = 0; i < num_iter; i++) {
       START_TIMER;
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #pragma omp single nowait
       {
 #endif

@@ -169,7 +169,7 @@ int main(int argc, char *argv[]) {
 
 // clock_gettime (CLOCK_MONOTONIC, &start);
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #pragma omp single nowait
 #endif
       {

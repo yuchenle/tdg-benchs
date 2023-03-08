@@ -53,7 +53,7 @@ void cholesky_blocked(const int ts, double *Ah[NB][NB], int num_iter) {
     for (int iter = 0; iter < num_iter; iter++) {
       START_TIMER;
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
       {
         for (int k = 0; k < NB; k++) {
