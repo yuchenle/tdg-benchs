@@ -66,7 +66,6 @@ int main(int argc, char *argv[]) {
 
 #ifdef TDG
 #pragma omp taskgraph
-#pragma omp single nowait
 #endif
     for (long i = 0; i < N; i += CHUNK_SIZE) {
       actual_size = (N - i >= CHUNK_SIZE) ? CHUNK_SIZE : (N - i);

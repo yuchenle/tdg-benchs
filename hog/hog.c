@@ -1814,7 +1814,6 @@ vl_float *vl_bsc_hog(vl_float const *image, vl_size width, vl_size height,
       START_TIMER;
 #ifdef TDG
 #pragma omp taskgraph
-#pragma omp single nowait
       {
 #endif
         int nblocks =
