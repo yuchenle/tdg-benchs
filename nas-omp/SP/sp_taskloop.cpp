@@ -478,7 +478,7 @@ void compute_rhs()
   {
 
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 		for (k = 0; k <= grid_points[2] - 1; k++)
@@ -535,7 +535,7 @@ void compute_rhs()
 		// 	timer_start(T_RHSX);
 		// }
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 	#pragma omp taskloop num_tasks(numThreads)
 		for (k = 1; k <= nz2; k++)
@@ -636,7 +636,7 @@ void compute_rhs()
 		// 	timer_start(T_RHSY);
 		// }
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 	#pragma omp taskloop num_tasks(numThreads)
 		for (k = 1; k <= nz2; k++)
@@ -743,7 +743,7 @@ void compute_rhs()
 		// 	timer_start(T_RHSZ);
 		// }
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 	#pragma omp taskloop num_tasks(numThreads)
 		for (k = 1; k <= nz2; k++)
@@ -1954,7 +1954,7 @@ void ninvr()
 
 #pragma omp single
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 	for (k = 1; k <= nz2; k++)
@@ -2002,7 +2002,7 @@ void pinvr()
 
 #pragma omp single
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 	for (k = 1; k <= nz2; k++)
@@ -2279,7 +2279,7 @@ void txinvr()
 // #pragma omp for
 #pragma omp single
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 	for (k = 1; k <= nz2; k++)
@@ -2340,7 +2340,7 @@ void tzetar()
 
 #pragma omp single
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 	for (k = 1; k <= nz2; k++)
@@ -2753,7 +2753,7 @@ void x_solve()
 // #pragma omp for
 #pragma omp single
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 	for (k = 1; k <= nz2; k++)
@@ -3093,7 +3093,7 @@ void y_solve()
 
 #pragma omp single
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 	for (k = 1; k <= grid_points[2] - 2; k++)
@@ -3425,7 +3425,7 @@ void z_solve()
 
 #pragma omp single
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 	for (j = 1; j <= ny2; j++)

@@ -453,7 +453,7 @@ void blts(int nx,
 			}
 		#else
 			global_k = k;
-			#pragma omp taskgraph tdg_type(dynamic)
+			#pragma omp taskgraph
 			#pragma omp taskloop num_tasks(numThreads)
 			for(int j=jst; j<jend; j++){
 				for(int i=ist; i<iend; i++){
@@ -645,7 +645,7 @@ void buts(int nx,
 			}
 		#else
 		  global_k = k;
-		  #pragma omp taskgraph tdg_type(dynamic)
+		  #pragma omp taskgraph
 			#pragma omp taskloop num_tasks(numThreads)
 			for(j=jend-1; j>=jst; j--){
 				for(i=iend-1; i>=ist; i--){
@@ -1323,7 +1323,7 @@ void jacld(int k){
 	{
 		global_k = k;
 	#ifdef TDG
-	#pragma omp taskgraph tdg_type(dynamic)
+	#pragma omp taskgraph
 	#endif
 	#pragma omp taskloop private(tmp1,tmp2,tmp3,i,j) shared(global_k) num_tasks(numThreads)
 	for(j=jst; j<jend; j++){
@@ -1619,7 +1619,7 @@ void jacu(int k){
 	{
 		global_k = k;
 		#ifdef TDG
-		#pragma omp taskgraph tdg_type(dynamic)
+		#pragma omp taskgraph
 		#endif
 		#pragma omp taskloop num_tasks(numThreads)
 		for (j=jend-1; j>=jst; j--) {
@@ -2237,7 +2237,7 @@ void rhs(){
 	#pragma omp single
 	{
 		#ifdef TDG
-		#pragma omp taskgraph tdg_type(dynamic)
+		#pragma omp taskgraph
 		#endif
 		#pragma omp taskloop num_tasks(numThreads)
 		for(k=0; k<nz; k++){
@@ -2261,7 +2261,7 @@ void rhs(){
 	 * ---------------------------------------------------------------------
 	 */
 		#ifdef TDG
-		#pragma omp taskgraph tdg_type(dynamic)
+		#pragma omp taskgraph
 		#endif
 		#pragma omp taskloop num_tasks(numThreads)
 		for(k=1; k<nz-1; k++){
@@ -2373,7 +2373,7 @@ void rhs(){
 	 * ---------------------------------------------------------------------
 	 */
 		#ifdef TDG
-		#pragma omp taskgraph tdg_type(dynamic)
+		#pragma omp taskgraph
 		#endif
 		#pragma omp taskloop num_tasks(numThreads)
 		for(k=1; k<nz-1; k++){
@@ -2491,7 +2491,7 @@ void rhs(){
 	 * ---------------------------------------------------------------------
 	 */
 		#ifdef TDG
-		#pragma omp taskgraph tdg_type(dynamic)
+		#pragma omp taskgraph
 		#endif	
 		#pragma omp taskloop num_tasks(numThreads)
 		for(j=jst; j<jend; j++){

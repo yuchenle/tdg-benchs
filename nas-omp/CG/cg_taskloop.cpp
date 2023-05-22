@@ -553,7 +553,7 @@ static void conj_grad(int colidx[],
 
 		/* initialize the CG algorithm */
 		#ifdef TDG
-		#pragma omp taskgraph tdg_type(dynamic)
+		#pragma omp taskgraph
 		#endif
 		#pragma omp taskloop num_tasks(numThreads)
 		for(j = 0; j < naa+1; j++){
@@ -571,7 +571,7 @@ static void conj_grad(int colidx[],
 		*/
 	  // printf ("@rho %p\n", (void *)&rho);
 		#ifdef TDG
-		#pragma omp taskgraph tdg_type(dynamic)
+		#pragma omp taskgraph
 		#endif		
 		#pragma omp taskloop reduction(+:rho) num_tasks(numThreads)
 		for(j = 0; j < lastcol - firstcol + 1; j++){
@@ -604,7 +604,7 @@ static void conj_grad(int colidx[],
 			rho = 0.0;
 
 			#ifdef TDG
-			#pragma omp taskgraph tdg_type(dynamic)
+			#pragma omp taskgraph
 			#endif
 			#pragma omp taskloop private(suml,k) num_tasks(numThreads)
 			for(j = 0; j < lastrow - firstrow + 1; j++){
@@ -623,7 +623,7 @@ static void conj_grad(int colidx[],
 
 			// printf ("@d %p\n",(void *)&d);
 			#ifdef TDG
-			#pragma omp taskgraph tdg_type(dynamic)
+			#pragma omp taskgraph
 			#endif
 			#pragma omp taskloop reduction(+:d) num_tasks(numThreads)
 			for (j = 0; j < lastcol - firstcol + 1; j++) {
@@ -644,7 +644,7 @@ static void conj_grad(int colidx[],
 			*/
 			// printf ("@rho %p\n",(void *)&rho);
 			#ifdef TDG
-			#pragma omp taskgraph tdg_type(dynamic)
+			#pragma omp taskgraph
 			#endif			
 			#pragma omp taskloop reduction(+:rho) num_tasks(numThreads)
 			for(j = 0; j < lastcol - firstcol + 1; j++){
@@ -673,7 +673,7 @@ static void conj_grad(int colidx[],
 			* ---------------------------------------------------------------------
 			*/
 			#ifdef TDG
-			#pragma omp taskgraph tdg_type(dynamic)
+			#pragma omp taskgraph
 			#endif
 			#pragma omp taskloop num_tasks(numThreads)
 			for(j = 0; j < lastcol - firstcol + 1; j++){
@@ -689,7 +689,7 @@ static void conj_grad(int colidx[],
 		* ---------------------------------------------------------------------
 		*/
 		#ifdef TDG
-		#pragma omp taskgraph tdg_type(dynamic)
+		#pragma omp taskgraph
 		#endif
 		#pragma omp taskloop num_tasks(numThreads) private(suml,k) //nogroup
 		for(j = 0; j < lastrow - firstrow + 1; j++){
@@ -707,7 +707,7 @@ static void conj_grad(int colidx[],
 		*/
 		// printf ("@sum %p\n",(void *)&sum);
 		#ifdef TDG
-		#pragma omp taskgraph tdg_type(dynamic)
+		#pragma omp taskgraph
 		#endif
 		#pragma omp taskloop reduction(+:sum) private(suml) num_tasks(numThreads)
 		for(j = 0; j < lastcol-firstcol+1; j++){

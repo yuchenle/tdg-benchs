@@ -493,7 +493,7 @@ static void cffts1_rev(int is,
 	// printf ("single + taskloop in cffts1_rev\n");
 	
 	#ifdef TDG
-	#pragma omp taskgraph tdg_type(dynamic)
+	#pragma omp taskgraph
 	#endif
 	#pragma omp taskloop num_tasks(numThreads)
 	for(int k=0; k<d3; k++) {

@@ -225,7 +225,7 @@ int main(int argc, char **argv)
                         // for (i = 0; i < NQ; i++) 
                         //      qq[i] = 0.0; 
 #ifdef TDG 
-#pragma omp taskgraph tdg_type(dynamic) 
+#pragma omp taskgraph
 #endif 
 #pragma omp taskloop reduction(+:sx,sy,qq) num_tasks(numThreads) 
                         for (k = 1; k <= np; k++) 

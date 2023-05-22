@@ -1265,7 +1265,7 @@ void compute_rhs()
 	{ 
 
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads) //default(none) private(rho_inv) shared(grid_points, us, ws, rho_i, u, vs, qs, square)// private(rho_inv) shared(rho_i, us, vs, ws, square, qs)
 		for (int k = 0; k <= grid_points[2] - 1; k++)
@@ -1315,7 +1315,7 @@ void compute_rhs()
 		 */
 
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 		for (k = 1; k <= grid_points[2] - 2; k++)
@@ -1424,7 +1424,7 @@ void compute_rhs()
 		 */
 #pragma omp taskwait
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 		for (k = 1; k <= grid_points[2] - 2; k++)
@@ -1546,7 +1546,7 @@ void compute_rhs()
  */
 
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 		for (k = 1; k <= grid_points[2] - 2; k++)
@@ -2992,7 +2992,7 @@ void x_solve()
 // #pragma omp for
 #pragma omp single
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 	for (k = 1; k <= grid_points[2] - 2; k++)
@@ -3270,7 +3270,7 @@ void y_solve()
 // #pragma omp for
 #pragma omp single
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 	for (k = 1; k <= grid_points[2] - 2; k++)
@@ -3550,7 +3550,7 @@ void z_solve()
 // #pragma omp for
 #pragma omp single
 #ifdef TDG
-#pragma omp taskgraph tdg_type(dynamic)
+#pragma omp taskgraph
 #endif
 #pragma omp taskloop num_tasks(numThreads)
 	for (j = 1; j <= grid_points[1] - 2; j++)
